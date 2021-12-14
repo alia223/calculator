@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import Calculator from "./components/Calculator";
 
 function App() {
+  const [display, setDisplay] = useState("");
+
+  const calculate = (calculation) => {
+    setDisplay(eval(calculation.replace('÷', '/').replace('x', '*').replace(/[^-()\d/*+.]/g, '')).toString());
+  }
+
+  const removeOneCharFromDisplay = () => {
+    setDisplay(prevDisplay => prevDisplay.slice(0, prevDisplay.length - 1));
+  }
+
+  const changeDisplay = (updatedDisplay) => {
+    setDisplay(prevDisplay => prevDisplay + '' + updatedDisplay);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="App" style={{ backgroundColor: "darkgrey" }}>
+      <Navbar />
+      <Calculator display={display} changeDisplay={changeDisplay} removeOneCharFromDisplay={removeOneCharFromDisplay} calculate={calculate} />
+    </div>  
   );
 }
 

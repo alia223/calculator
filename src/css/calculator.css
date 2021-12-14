@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 40%;
+    margin-top: 125px;
+}
+
+[class^="col-"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(61, 61, 61);
+    color: white;
+    height: 90px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    color: white;
+}
